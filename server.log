@@ -1,0 +1,101 @@
+[dotenv@17.2.3] injecting env (11) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+
+🔄 Testing database connection...
+Database query error: Error: connect ECONNREFUSED 127.0.0.1:5432
+    at /home/engine/project/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async query (/home/engine/project/config/database.js:30:17)
+    at async Object.testConnection (/home/engine/project/config/database.js:64:20)
+    at async startServer (/home/engine/project/server.js:138:25) {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5432
+}
+❌ Database connection test failed: connect ECONNREFUSED 127.0.0.1:5432
+⚠️  WARNING: Database connection failed!
+💡 The server will start but database-dependent endpoints will not work.
+💡 Make sure PostgreSQL is running and credentials in .env are correct.
+💡 To setup the database, follow instructions in README.md
+
+
+============================================================
+🚀 Paint & Varnish Shop Accounting System API
+============================================================
+📡 Server running on port: 5000
+🌍 Environment: development
+🗄️  Database: paint_shop_accounting (❌ Not Connected)
+📍 API URL: http://localhost:5000/api
+💚 Health Check: http://localhost:5000/api/health
+🌐 Language Support: Dari (دری), Pashto (پښتو), English
+============================================================
+
+
+🔵 GET /api/health
+Database query error: Error: connect ECONNREFUSED 127.0.0.1:5432
+    at /home/engine/project/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async query (/home/engine/project/config/database.js:30:17)
+    at async Object.testConnection (/home/engine/project/config/database.js:64:20)
+    at async /home/engine/project/server.js:49:23 {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5432
+}
+❌ Database connection test failed: connect ECONNREFUSED 127.0.0.1:5432
+
+🔵 GET /api/health
+Database query error: Error: connect ECONNREFUSED 127.0.0.1:5432
+    at /home/engine/project/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async query (/home/engine/project/config/database.js:30:17)
+    at async Object.testConnection (/home/engine/project/config/database.js:64:20)
+    at async /home/engine/project/server.js:49:23 {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5432
+}
+❌ Database connection test failed: connect ECONNREFUSED 127.0.0.1:5432
+
+🔵 GET /api/health
+Database query error: Error: connect ECONNREFUSED 127.0.0.1:5432
+    at /home/engine/project/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async query (/home/engine/project/config/database.js:30:17)
+    at async Object.testConnection (/home/engine/project/config/database.js:64:20)
+    at async /home/engine/project/server.js:49:23 {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5432
+}
+❌ Database connection test failed: connect ECONNREFUSED 127.0.0.1:5432
+
+🔵 GET /api/nonexistent
+GET /api/nonexistent 404 1.479 ms - 973
+
+🔵 GET /api/health
+Database query error: Error: connect ECONNREFUSED 127.0.0.1:5432
+    at /home/engine/project/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async query (/home/engine/project/config/database.js:30:17)
+    at async Object.testConnection (/home/engine/project/config/database.js:64:20)
+    at async /home/engine/project/server.js:49:23 {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5432
+}
+❌ Database connection test failed: connect ECONNREFUSED 127.0.0.1:5432
+
+⚠️  SIGTERM received. Starting graceful shutdown...
+🔴 HTTP server closed
+🔴 Database connection pool closed
+✅ Graceful shutdown completed
