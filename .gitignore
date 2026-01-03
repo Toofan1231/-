@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+.DS_Store
+all_files.txt
+extracted_zip/
+معثر شفاف.zip
