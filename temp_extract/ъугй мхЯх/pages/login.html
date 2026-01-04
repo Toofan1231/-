@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ورود / ثبت‌نام</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header>
+    <div id="dynamic-menu"></div>
+  </header>
+
+  <section class="login-section">
+    <h2>ورود یا ثبت‌نام</h2>
+
+    <div class="tabs">
+      <button id="tab-login">ورود</button>
+      <button id="tab-register">ثبت‌نام</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <input type="email" id="login-email" placeholder="ایمیل" required />
+      <input type="password" id="login-password" placeholder="رمز عبور" required />
+      <button type="submit">ورود</button>
+    </form>
+
+    <form id="register-form" class="auth-form hidden">
+      <input type="text" id="reg-name" placeholder="نام کامل" required />
+      <input type="email" id="reg-email" placeholder="ایمیل" required />
+      <input type="password" id="reg-password" placeholder="رمز عبور" required />
+      <input type="password" id="reg-password-confirm" placeholder="تکرار رمز عبور" required />
+      <button type="submit">ثبت‌نام</button>
+    </form>
+
+    <div id="auth-message" class="auth-message"></div>
+  </section>
+
+  <div id="dynamic-footer"></div>
+  <script src="../components/menu.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/language.js"></script>
+  <script src="../scripts.js"></script>
+  <script>
+    document.getElementById("tab-login").addEventListener("click", () => {
+      document.getElementById("login-form").classList.remove("hidden");
+      document.getElementById("register-form").classList.add("hidden");
+      document.getElementById("auth-message").textContent = "";
+    });
+    document.getElementById("tab-register").addEventListener("click", () => {
+      document.getElementById("register-form").classList.remove("hidden");
+      document.getElementById("login-form").classList.add("hidden");
+      document.getElementById("auth-message").textContent = "";
+    });
+
+    document.getElementById("login-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const pass = document.getElementById("login-password").value;
+      document.getElementById("auth-message").textContent = `ورود با ایمیل ${email} انجام شد (نسخه دمو).`;
+    });
+
+    document.getElementById("register-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("reg-name").value;
+      const email = document.getElementById("reg-email").value;
+      const pass = document.getElementById("reg-password").value;
+      const pass2 = document.getElementById("reg-password-confirm").value;
+      if (pass !== pass2) {
+        document.getElementById("auth-message").textContent = "رمزها مطابقت ندارند!";
+      } else {
+        document.getElementById("auth-message").textContent = `ثبت‌نام ${name} با ایمیل ${email} انجام شد (نسخه دمو).`;
+        document.getElementById("register-form").reset();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+/* پایه */
+body {
+  margin: 0;
+  font-family: "Tahoma", sans-serif;
+  background-color: #f8f9fa;
+  direction: rtl;
+}
+
+/* سوییچر زبان */
+.language-switcher {
+  background: #eee;
+  text-align: center;
+  padding: 10px;
+}
+
+.language-switcher button {
+  margin: 0 6px;
+  padding: 8px 16px;
+  background-color: #0059b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.language-switcher button:hover {
+  background-color: #003f7d;
+}
+
+/* منو */
+header {
+  background-color: #002244;
+  color: white;
+  padding: 15px 20px;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.menu a:hover {
+  color: #00bfff;
+}
+
+/* بنر */
+.hero {
+  background: url("img/banner.jpg") center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+.btn-primary {
+  background-color: #00b894;
+  padding: 12px 20px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.btn-primary:hover {
+  background-color: #019870;
+}
+
+/* ویژگی‌ها */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 40px 20px;
+  gap: 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.feature-box {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* فوتر */
+footer {
+  background-color: #002244;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+/* لیست دوره‌ها */
+.course-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.course-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.home-courses h2 {
+	text-align: center;
+	font-size: 2rem;
+	margin: 40px 0 20px;
+}
+
+.course-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.about-section {
+  padding: 50px 20px;
+  background-color: #ffffff;
+  color: #333;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #002244;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+.contact-section {
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  color: #002244;
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  background-color: #00b894;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.contact-form button:hover {
+  background-color: #019170;
+}
+
+.contact-info {
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.register-section {
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.register-section h2 {
+  font-size: 2rem;
+  color: #002244;
+  margin-bottom: 20px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-form input,
+.register-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.register-form button {
+  background-color: #2980b9;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.register-form button:hover {
+  background-color: #1f5e91;
+}
+.team-section {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.team-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #002244;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.team-member {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 250px;
+}
+
+.team-member img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.team-member h3 {
+  margin: 0;
+  color: #0077cc;
+}
+
+.team-member p {
+  margin: 5px 0 0;
+  color: #444;
+}
+</section>
+
+
+footer {
+	background-color: #002244;
+	color: black:
+	padding: 20px;
+	text-align: center;
+	font-size: 0.9rem:
+}
+.footer-links {
+	margin-bottom: 10px;
+}
+.footer-links a{
+	color: #b0e0e6;
+	text-decoration: none;
+	margin: 0 5px;
+}
+.footer-links a:hover {
+	text-decoration: underline;
+}
+.admin-panel {
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.admin-panel h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #002244;
+}
+
+#add-course-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+#add-course-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex: 1 1 200px;
+}
+
+#add-course-form button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.course-list {
+  list-style: none;
+  padding: 0;
+}
+
+.course-list li {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-list button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.profile-settings {
+  max-width: 500px;
+  margin: auto;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.profile-settings h2 {
+  font-size: 2rem;
+  color: #002244;
+  margin-bottom: 30px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.settings-form input,
+.settings-form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.settings-form button {
+  background-color: #0077cc;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.login-section {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #002244;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 4px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.auth-form.hidden {
+  display: none;
+}
+
+.auth-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-form button {
+  padding: 12px;
+  background-color: #00b894;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.auth-message {
+  margin-top: 15px;
+  font-weight: bold;
+  color: red;
+}
