@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>آکادمی آموزش آنلاین</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<script src="components/menu.js"></script>
+<body>
+
+  <!-- سوییچر زبان -->
+  <div class="language-switcher">
+    <button onclick="switchLanguage('fa')">دری</button>
+    <button onclick="switchLanguage('ps')">پشتو</button>
+    <button onclick="switchLanguage('en')">English</button>
+  </div>
+
+  <!-- منوی بالای صفحه -->
+  <header>
+   <div id="dynamic-menu"></div>
+  </header>
+
+  <!-- بنر معرفی -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>یادگیری را از همین امروز شروع کن!</h1>
+      <p>دوره‌های رایگان و حرفه‌ای برای همهٔ مردم افغانستان و جهان.</p>
+      <a href="pages/courses.html" class="btn-primary">مشاهده دوره‌ها</a>
+    </div>
+  </section>
+
+  <!-- معرفی مزایا -->
+  <section class="features">
+    <div class="feature-box">🎓 مدرسین با تجربه</div>
+    <div class="feature-box">📚 دوره‌های متنوع</div>
+    <div class="feature-box">🏅 گواهینامه معتبر</div>
+    <div class="feature-box">🌐 دسترسی آنلاین ۲۴/۷</div>
+  </section>
+  
+  <!-- پیش‌نمایش دوره‌ها در صفحه اصلی -->
+<section class="home-courses">
+  <h2>دوره‌های ویژه</h2>
+  <div class="courses-grid">
+    <div class="course-card">
+      <img src="img/python.jpg" alt="Python">
+      <h3>آموزش Python</h3>
+      <p>مدرس: احمد - ۱۰ جلسه</p>
+      <a href="pages/courses.html" class="btn-primary">مشاهده</a>
+    </div>
+    <div class="course-card">
+      <img src="img/english.jpg" alt="English">
+      <h3>آموزش زبان انگلیسی</h3>
+      <p>مدرس: سارا - ۱۵ جلسه</p>
+      <a href="pages/courses.html" class="btn-primary">مشاهده</a>
+    </div>
+    <div class="course-card">
+      <img src="img/web.jpg" alt="Web">
+      <h3>برنامه‌نویسی وب</h3>
+      <p>۲۰ جلسه پروژه‌محور</p>
+      <a href="pages/courses.html" class="btn-primary">مشاهده</a>
+    </div>
+  </div>
+</section>
+
+  <!-- فوتر -->
+ 
+</body>
+<div id="dynamic-footer"></div>
+<script src="components/footer.js"></script>
+</html>
