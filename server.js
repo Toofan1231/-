@@ -29,9 +29,11 @@ app.get('/api/health', async (req, res) => {
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
+const supplierRoutes = require('./routes/supplierRoutes');
 
 // Use Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/suppliers', supplierRoutes);
 
 // Error Handling
 app.use(notFound);
