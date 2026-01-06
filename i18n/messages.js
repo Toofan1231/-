@@ -18,9 +18,11 @@ module.exports = {
       branchNotFound: 'نمایندگی یافت نشد'
     },
     common: {
+      success: 'موفقانه انجام شد',
       error: 'خطا در سرور رخ داده است',
       validationError: 'خطا در صحت‌سنجی داده‌ها',
-      notFound: 'منبع مورد نظر یافت نشد'
+      notFound: 'منبع مورد نظر یافت نشد',
+      supplierDeleted: 'تامین‌کننده موفقانه حذف گردید'
     }
   },
   pashto: {
@@ -45,9 +47,11 @@ module.exports = {
       branchNotFound: 'Branch not found'
     },
     common: {
+      success: 'Success',
       error: 'Server error occurred',
       validationError: 'Validation error',
-      notFound: 'Resource not found'
+      notFound: 'Resource not found',
+      supplierDeleted: 'Supplier deleted successfully'
     }
   }
 };
