@@ -24,7 +24,28 @@ module.exports = {
     }
   },
   pashto: {
-    // Add Pashto as needed
+    welcome: 'د رنګ او وارنیش پلورنځي د حسابدارۍ سیستم ته ښه راغلاست',
+    auth: {
+      success: 'بریالی',
+      registered: 'کاروونکی په بریالیتوب سره ثبت شو',
+      loggedIn: 'په بریالیتوب سره ننوتل وشول',
+      loggedOut: 'په بریالیتوب سره ووتل',
+      passwordChanged: 'پټ نوم په بریالیتوب سره بدل شو',
+      emailExists: 'دا ایمیل لا مخکې ثبت دی',
+      weakPassword: 'پټ نوم کمزوری دی',
+      invalidCredentials: 'ایمیل یا پټ نوم ناسمه ده',
+      tokenExpired: 'توکن پای ته رسېدلی',
+      tokenInvalid: 'توکن ناسمه ده',
+      unauthorized: 'بې اجازې لاسرسی',
+      forbidden: 'تاسو دې سرچینې ته اجازه نه لرئ',
+      userNotFound: 'کاروونکی ونه موندل شو',
+      branchNotFound: 'څانګه ونه موندل شوه'
+    },
+    common: {
+      error: 'په سرور کې تېروتنه وشوه',
+      validationError: 'د معلوماتو د اعتبار تېروتنه',
+      notFound: 'سرچینه ونه موندل شوه'
+    }
   },
   english: {
     welcome: 'Welcome to Paint & Varnish Shop Accounting System',

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reports • Admin • Paint & Varnish Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="pv-app">
+      <aside id="pv-sidebar" class="pv-sidebar">
+        <div class="pv-brand">
+          <div>
+            <p class="pv-brand-title" data-i18n="app.name">Paint &amp; Varnish Shop</p>
+            <small data-i18n="app.tagline">Accounting System</small>
+          </div>
+          <button id="pv-sidebar-close" type="button" class="btn btn-sm btn-outline-light d-lg-none" aria-label="Close sidebar">×</button>
+        </div>
+        <nav id="pv-sidebar-nav"></nav>
+      </aside>
+
+      <div class="pv-main">
+        <header class="pv-topbar">
+          <div class="pv-topbar-left">
+            <button id="pv-sidebar-toggle" type="button" class="btn btn-outline-secondary btn-sm d-lg-none" aria-label="Toggle sidebar">
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+            <div>
+              <h1 class="pv-page-title" data-i18n="nav.reports">Reports</h1>
+              <div class="small pv-muted" data-i18n="reports.title">Reports &amp; Analytics</div>
+            </div>
+          </div>
+
+          <div class="pv-topbar-right">
+            <select id="pv-lang-select" class="form-select form-select-sm" style="width: 140px" aria-label="Language selector">
+              <option value="en">English</option>
+              <option value="da">دری</option>
+              <option value="ps">پښتو</option>
+            </select>
+            <div class="text-end">
+              <div id="pv-user-name" class="fw-bold"></div>
+              <div id="pv-user-meta" class="small pv-muted"></div>
+            </div>
+            <a id="pv-logout" href="#" class="btn btn-outline-danger btn-sm">
+              <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
+              <span data-i18n="nav.logout">Logout</span>
+            </a>
+          </div>
+        </header>
+
+        <main class="pv-content">
+          <div class="pv-card pv-card-body mb-3">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label" for="report-type">Report Type</label>
+                <select id="report-type" class="form-select">
+                  <option value="daily" data-i18n="reports.daily">Daily</option>
+                  <option value="weekly" data-i18n="reports.weekly">Weekly</option>
+                  <option value="monthly" data-i18n="reports.monthly">Monthly</option>
+                  <option value="custom" data-i18n="reports.custom">Custom</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Branch</label>
+                <select class="form-select">
+                  <option value="">All</option>
+                  <option value="1">Barki</option>
+                  <option value="2">Shah Shahid</option>
+                </select>
+              </div>
+              <div class="col-md-4 d-flex gap-2 justify-content-md-end">
+                <button id="report-generate" class="btn btn-primary" type="button" data-i18n="reports.generate">Generate Report</button>
+                <button id="report-export-pdf" class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-file-earmark-pdf me-1" aria-hidden="true"></i>
+                  PDF
+                </button>
+                <button id="report-export-excel" class="btn btn-outline-secondary" type="button">
+                  <i class="bi bi-file-earmark-spreadsheet me-1" aria-hidden="true"></i>
+                  Excel
+                </button>
+              </div>
+            </div>
+            <div id="report-meta" class="small pv-muted mt-2"></div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <div class="pv-card pv-card-body">
+                <div class="pv-muted small">Sales</div>
+                <div id="report-sales" class="h4 mb-0 pv-mono">0</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="pv-card pv-card-body">
+                <div class="pv-muted small">Expenses</div>
+                <div id="report-expenses" class="h4 mb-0 pv-mono">0</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="pv-card pv-card-body">
+                <div class="pv-muted small">Profit</div>
+                <div id="report-profit" class="h4 mb-0 pv-mono" style="color: var(--pv-success)">0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-xl-8">
+              <div class="pv-card">
+                <div class="pv-card-header fw-bold">Sales Trend</div>
+                <div class="pv-card-body" style="height: 320px">
+                  <canvas id="report-chart-sales" aria-label="Sales trend chart" role="img"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-4">
+              <div class="pv-card">
+                <div class="pv-card-header fw-bold">Branch Comparison</div>
+                <div class="pv-card-body" style="height: 320px">
+                  <canvas id="report-chart-branch" aria-label="Branch comparison chart" role="img"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-xl-6">
+              <div class="pv-card">
+                <div class="pv-card-header fw-bold">Top Products</div>
+                <div class="pv-card-body" style="height: 320px">
+                  <canvas id="report-chart-products" aria-label="Top products chart" role="img"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-6">
+              <div class="pv-card">
+                <div class="pv-card-header fw-bold">Products Table</div>
+                <div class="pv-card-body">
+                  <div class="table-responsive">
+                    <table id="report-products-table" class="table table-striped pv-table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Qty</th>
+                          <th>Revenue</th>
+                        </tr>
+                      </thead>
+                      <tbody id="report-products-body"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pv-card pv-card-body mt-3">
+            <div class="fw-bold">P&L Statement</div>
+            <div class="small pv-muted">(demo view) Sales − Expenses = Profit</div>
+          </div>
+
+          <div class="pv-card pv-card-body mt-3">
+            <div class="fw-bold">Cash Flow Summary</div>
+            <div class="small pv-muted">(demo view)</div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <script src="js/lang/english.js"></script>
+    <script src="js/lang/dari.js"></script>
+    <script src="js/lang/pashto.js"></script>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/pages/admin-reports.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
