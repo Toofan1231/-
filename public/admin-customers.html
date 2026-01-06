@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customers • Admin • Paint & Varnish Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="pv-app">
+      <aside id="pv-sidebar" class="pv-sidebar">
+        <div class="pv-brand">
+          <div>
+            <p class="pv-brand-title" data-i18n="app.name">Paint &amp; Varnish Shop</p>
+            <small data-i18n="app.tagline">Accounting System</small>
+          </div>
+          <button id="pv-sidebar-close" type="button" class="btn btn-sm btn-outline-light d-lg-none" aria-label="Close sidebar">×</button>
+        </div>
+        <nav id="pv-sidebar-nav"></nav>
+      </aside>
+
+      <div class="pv-main">
+        <header class="pv-topbar">
+          <div class="pv-topbar-left">
+            <button id="pv-sidebar-toggle" type="button" class="btn btn-outline-secondary btn-sm d-lg-none" aria-label="Toggle sidebar">
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+            <div>
+              <h1 class="pv-page-title" data-i18n="nav.customers">Customers</h1>
+              <div class="small pv-muted" data-i18n="customers.title">Customers</div>
+            </div>
+          </div>
+
+          <div class="pv-topbar-right">
+            <select id="pv-lang-select" class="form-select form-select-sm" style="width: 140px" aria-label="Language selector">
+              <option value="en">English</option>
+              <option value="da">دری</option>
+              <option value="ps">پښتو</option>
+            </select>
+            <div class="text-end">
+              <div id="pv-user-name" class="fw-bold"></div>
+              <div id="pv-user-meta" class="small pv-muted"></div>
+            </div>
+            <a id="pv-logout" href="#" class="btn btn-outline-danger btn-sm">
+              <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
+              <span data-i18n="nav.logout">Logout</span>
+            </a>
+          </div>
+        </header>
+
+        <main class="pv-content">
+          <div class="pv-card pv-card-body mb-3">
+            <div class="d-flex flex-wrap gap-2 align-items-end">
+              <div class="flex-grow-1" style="min-width: 220px">
+                <label class="form-label" for="customers-search" data-i18n="common.search">Search</label>
+                <input id="customers-search" class="form-control" type="search" placeholder="Customer name" />
+              </div>
+
+              <div style="min-width: 220px">
+                <label class="form-label" for="customers-credit-filter">Credit Status</label>
+                <select id="customers-credit-filter" class="form-select">
+                  <option value="">All</option>
+                  <option value="Good">Good</option>
+                  <option value="At Limit">At Limit</option>
+                  <option value="Over Limit">Over Limit</option>
+                </select>
+              </div>
+
+              <div style="min-width: 140px">
+                <label class="form-label" for="customers-page-size">Rows</label>
+                <select id="customers-page-size" class="form-select">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+
+              <div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#newCustomerModal">
+                  <i class="bi bi-person-plus me-1" aria-hidden="true"></i>
+                  <span data-i18n="dashboard.newCustomer">New Customer</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pv-card">
+            <div class="pv-card-body">
+              <div class="table-responsive">
+                <table class="table table-striped pv-table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th data-i18n="customers.name">Name</th>
+                      <th data-i18n="customers.phone">Phone</th>
+                      <th data-i18n="customers.email">Email</th>
+                      <th data-i18n="customers.creditLimit">Credit Limit</th>
+                      <th data-i18n="customers.usedCredit">Used Credit</th>
+                      <th data-i18n="customers.available">Available</th>
+                      <th data-i18n="common.status">Status</th>
+                      <th class="text-end" data-i18n="common.actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="customers-table-body"></tbody>
+                </table>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between mt-3">
+                <div class="small pv-muted">Pagination</div>
+                <div id="customers-pagination"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Customer details modal -->
+    <div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Customer Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="pv-card pv-card-body">
+                  <div class="fw-bold mb-2">Basic Info</div>
+                  <div class="small pv-muted">Name</div>
+                  <div data-customer-name class="fw-bold"></div>
+                  <div class="small pv-muted mt-2">Phone</div>
+                  <div data-customer-phone class="pv-mono"></div>
+                  <div class="small pv-muted mt-2">Email</div>
+                  <div data-customer-email></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="pv-card pv-card-body">
+                  <div class="fw-bold mb-2">Credit</div>
+                  <div class="d-flex justify-content-between"><span class="pv-muted">Limit</span><span data-customer-limit class="pv-mono"></span></div>
+                  <div class="d-flex justify-content-between"><span class="pv-muted">Used</span><span data-customer-used class="pv-mono"></span></div>
+                  <div class="d-flex justify-content-between"><span class="pv-muted">Available</span><span data-customer-available class="pv-mono"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pv-card pv-card-body mt-3">
+              <div class="fw-bold mb-2">Recent Transactions</div>
+              <div class="small pv-muted">(demo)</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal" data-i18n="common.close">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New customer modal -->
+    <div class="modal fade" id="newCustomerModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="dashboard.newCustomer">New Customer</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-info small mb-0">Demo form. Wire to /api/customers to persist.</div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal" data-i18n="common.cancel">Cancel</button>
+            <button class="btn btn-primary" type="button" onclick="PV.toast({type:'success', title:'Customer', message:'Created (demo).'})">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/lang/english.js"></script>
+    <script src="js/lang/dari.js"></script>
+    <script src="js/lang/pashto.js"></script>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/pages/table.js"></script>
+    <script src="js/pages/admin-customers.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

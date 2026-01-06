@@ -1,12 +1,15 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const db = require('../config/database');
+const jwtConfig = require('../config/jwt');
 const { AppError, catchAsync } = require('../middleware/errorHandler');
 const messages = require('../i18n/messages');
 const { ROLES } = require('../config/constants');
 
 const register = catchAsync(async (req, res, next) => {
   const { full_name, email, password, role } = req.body;
-  const lang = req.headers['accept-language']?.startsWith('da') ? 'dari' : 'english';
+  const acceptLang = req.headers['accept-language'] || '';
+  const lang = acceptLang.startsWith('da') ? 'dari' : acceptLang.startsWith('ps') ? 'pashto' : 'english';
 
   // Basic validation
   if (!full_name || !email || !password) {
@@ -25,7 +28,7 @@ const register = catchAsync(async (req, res, next) => {
   }
 
   // Hash password
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, jwtConfig.bcryptRounds);
 
   // Create user with default role 'staff' if not provided
   const userRole = role || ROLES.STAFF;
@@ -34,18 +37,25 @@ const register = catchAsync(async (req, res, next) => {
     [full_name, email, hashedPassword, userRole]
   );
 
+  const user = newUser.rows[0];
+  const token = jwt.sign({ id: user.id, role: user.role, branch_id: user.branch_id }, jwtConfig.secret, {
+    expiresIn: jwtConfig.expiresIn
+  });
+
   res.status(201).json({
     status: 'success',
     message: messages[lang].auth.registered,
     data: {
-      user: newUser.rows[0]
+      user,
+      token
     }
   });
 });
 
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  const lang = req.headers['accept-language']?.startsWith('da') ? 'dari' : 'english';
+  const acceptLang = req.headers['accept-language'] || '';
+  const lang = acceptLang.startsWith('da') ? 'dari' : acceptLang.startsWith('ps') ? 'pashto' : 'english';
 
   if (!email || !password) {
     return next(new AppError(messages[lang].auth.invalidCredentials, 400, 'missing-credentials'));
@@ -66,14 +76,21 @@ const login = catchAsync(async (req, res, next) => {
     return next(new AppError(messages[lang].auth.unauthorized, 401, 'user-inactive'));
   }
 
+  await db.query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+
   // Return user data without password
   delete user.password;
+
+  const token = jwt.sign({ id: user.id, role: user.role, branch_id: user.branch_id }, jwtConfig.secret, {
+    expiresIn: jwtConfig.expiresIn
+  });
 
   res.status(200).json({
     status: 'success',
     message: messages[lang].auth.loggedIn,
     data: {
-      user
+      user,
+      token
     }
   });
 });
