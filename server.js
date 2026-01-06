@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const path = require('path');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 const db = require('./config/database');
 
@@ -16,9 +15,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 app.use(morgan(process.env.LOG_LEVEL || 'dev'));
-
-// Serve frontend
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Health check endpoint
 app.get('/api/health', async (req, res) => {
