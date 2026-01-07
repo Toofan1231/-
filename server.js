@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const path = require('path');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 const db = require('./config/database');
 
@@ -15,6 +16,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 app.use(morgan(process.env.LOG_LEVEL || 'dev'));
+
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API routes first
+app.use('/api', (req, res, next) => {
+  next();
+});
 
 // Health check endpoint
 app.get('/api/health', async (req, res) => {
@@ -32,6 +41,11 @@ const authRoutes = require('./routes/authRoutes');
 
 // Use Routes
 app.use('/api/auth', authRoutes);
+
+// Serve static frontend files (catch-all for SPA)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Error Handling
 app.use(notFound);

@@ -4,4 +4,6 @@ node_modules/
 .DS_Store
 all_files.txt
 extracted_zip/
-معثر شفاف.zip
+temp_extract/
+*.zip
+server.log
