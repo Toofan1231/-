@@ -1,8 +1,10 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const db = require('../config/database');
 const { AppError, catchAsync } = require('../middleware/errorHandler');
 const messages = require('../i18n/messages');
 const { ROLES } = require('../config/constants');
+const jwtConfig = require('../config/jwt');
 
 const register = catchAsync(async (req, res, next) => {
   const { full_name, email, password, role } = req.body;
@@ -34,11 +36,19 @@ const register = catchAsync(async (req, res, next) => {
     [full_name, email, hashedPassword, userRole]
   );
 
+  // Generate JWT token for immediate login
+  const token = jwt.sign(
+    { id: newUser.rows[0].id, email: email, role: userRole },
+    jwtConfig.secret,
+    { expiresIn: jwtConfig.expiresIn }
+  );
+
   res.status(201).json({
     status: 'success',
     message: messages[lang].auth.registered,
     data: {
-      user: newUser.rows[0]
+      user: newUser.rows[0],
+      token
     }
   });
 });
@@ -66,6 +76,16 @@ const login = catchAsync(async (req, res, next) => {
     return next(new AppError(messages[lang].auth.unauthorized, 401, 'user-inactive'));
   }
 
+  // Update last login timestamp
+  await db.query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
+
+  // Generate JWT token
+  const token = jwt.sign(
+    { id: user.id, email: user.email, role: user.role },
+    jwtConfig.secret,
+    { expiresIn: jwtConfig.expiresIn }
+  );
+
   // Return user data without password
   delete user.password;
 
@@ -73,7 +93,8 @@ const login = catchAsync(async (req, res, next) => {
     status: 'success',
     message: messages[lang].auth.loggedIn,
     data: {
-      user
+      user,
+      token
     }
   });
 });
