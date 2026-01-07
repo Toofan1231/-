@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>پنل مدیریت</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div id="dynamic-menu"></div>
+  </header>
+
+  <main class="admin-panel">
+    <h2>مدیریت دوره‌ها</h2>
+
+    <form id="add-course-form">
+      <input type="text" placeholder="عنوان دوره" id="course-title" required />
+      <input type="text" placeholder="مدرس" id="course-teacher" required />
+      <button type="submit">افزودن دوره</button>
+    </form>
+
+    <ul id="course-list" class="course-list"></ul>
+  </main>
+
+  <div id="dynamic-footer"></div>
+  <script src="components/menu.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="scripts.js"></script>
+  <script>
+    const form = document.getElementById("add-course-form");
+    const list = document.getElementById("course-list");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("course-title").value;
+      const teacher = document.getElementById("course-teacher").value;
+
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${title}</strong> - ${teacher}
+        <button onclick="this.parentElement.remove()">❌</button>
+      `;
+      list.appendChild(li);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>

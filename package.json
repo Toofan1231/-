@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "db:setup": "psql -U postgres -d paint_shop_accounting -f database/schema.sql",
+    "build": "echo 'Build complete'",
+    "db:setup": "node database/init.js",
     "db:reset": "dropdb -U postgres --if-exists paint_shop_accounting && createdb -U postgres paint_shop_accounting && npm run db:setup"
   },
   "dependencies": {
